@@ -1,0 +1,5 @@
+# object file
+*.o
+
+# executable file
+*.out
