@@ -1,10 +1,10 @@
 btHashMapBenchmark
 =====================
-This is a benchmark test `btHashMap` vs. `std::unordered_map`(C++11).
+This is a benchmark test for `btHashMap` vs. `std::unordered_map`(C++11).
 
 dependencies
 ============
-`std::unordered_map` is add in c++0x(g++ -std=c++0x).
+`std::unordered_map` new in c++0x(g++ -std=c++0x).
 
 build
 ============
