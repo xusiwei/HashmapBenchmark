@@ -66,13 +66,13 @@ void btBench(const char* text, int length)
 	btHashMap<btHashString, btHashInt> btDict;
 	
 	int count = 0;
-	int scaned = 0, cursor = 0;
+	int cursor = 0;
 	char word[256];
 	
 	timer t;
 	do {
-		int len = 0;
-		scaned = took(text, word, &len);
+		cursor += took(&text[cursor], word, NULL);
+		count++;
 		
 		btHashString key(word);
 		btHashInt* val = btDict.find(key);
@@ -82,11 +82,7 @@ void btBench(const char* text, int length)
 		else {
 			btDict.insert(key, btHashInt(1));
 		}
-		
-		count++;
-		text += scaned;
-		cursor += scaned;
-	}while(scaned && cursor < length);
+	}while(cursor < length);
 	double timeUsed = t.elapsed();
 	
 	printf("%9s: time used: %.3f, word tooks: %d\n", __func__, timeUsed, count);
@@ -97,21 +93,17 @@ void stdBench(const char* text, int length)
 	std::unordered_map<std::string, int> dict;
 	
 	int count = 0;
-	int scaned = 0, cursor = 0;
+	int cursor = 0;
 	char word[256];
 	
 	timer t;
 	do {
-		int len = 0;
-		scaned = took(text, word, &len);
+		cursor += took(&text[cursor], word, NULL);
+		count++;
 		
 		// insert to dict.
 		dict[word]++;
-		
-		count++;
-		text += scaned;
-		cursor += scaned;
-	}while(scaned && cursor < length);
+	}while(cursor < length);
 	double timeUsed = t.elapsed();
 	
 	printf("%9s: time used: %.3f, word tooks: %d\n", __func__, timeUsed, count);
