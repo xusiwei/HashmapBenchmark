@@ -103,7 +103,13 @@ void stdBench(const char* text, int length)
 		count++;
 		
 		// insert to dict.
-		dict[word]++;
+		auto pos = dict.find(word);
+		if(pos != dict.end()) {
+			pos->second++;
+		}
+		else {
+			dict.insert(std::make_pair(word, 1));
+		}
 	}while(cursor < length);
 	double timeUsed = t.elapsed();
 	
