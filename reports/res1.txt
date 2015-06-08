@@ -1,0 +1,2 @@
+ stdBench: time used: 0.184, word tooks: 695882
+  btBench: time used: 0.061, word tooks: 695882
