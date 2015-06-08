@@ -35,9 +35,10 @@ char* readfile(const char* filename, int* plen)
 	
 	rewind(fin);
 	
-	char* buffer = (char*)malloc(size);
+	char* buffer = (char*)malloc(size + 1);
 	long readed = fread(buffer, 1, size, fin);
 	// prinf("readed: %d, size: %d\n", readed, size);
+	buffer[size] = 0;
 	assert(readed == size);
 	
 	if(plen) *plen = static_cast<int>(size);
@@ -52,12 +53,13 @@ int took(const char* text, char* word, int* plen)
 	int count = 0;
 	const char* p = text;
 	
-	while(!isalpha(*p)) p++;  // ignore prefix non alpha chars.
-	for( ; p; p++) {
+	while(*p && !isalpha(*p)) p++;  // ignore prefix non alpha chars.
+	for( ; *p; p++) {
 		if(isalpha(*p)) word[count++] = *p;
 		else break;
 	}
 	word[count++] = '\0';
+	// printf("took: %s\n", word);
 	if(plen) *plen = count;
 	return p - text;
 }
