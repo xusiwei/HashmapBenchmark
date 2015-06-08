@@ -74,7 +74,10 @@ void btBench(const char* text, int length)
 	
 	timer t;
 	do {
-		cursor += took(&text[cursor], word, NULL);
+		int wlen = 0;
+		cursor += took(&text[cursor], word, &wlen);
+		if(!word[0]) break;
+		
 		count++;
 		
 		btHashString key(word);
@@ -101,7 +104,10 @@ void stdBench(const char* text, int length)
 	
 	timer t;
 	do {
-		cursor += took(&text[cursor], word, NULL);
+		int wlen = 0;
+		cursor += took(&text[cursor], word, &wlen);
+		if(!word[0]) break;
+		
 		count++;
 		
 		// insert to dict.
