@@ -1,4 +1,5 @@
 #include "btHashMap.h"
+#include "getCPUTime.h"
 
 #include <ctime>
 #include <cctype>
@@ -10,13 +11,13 @@
 class timer
 {
  public:
-         timer() { _start_time = std::clock(); } // postcondition: elapsed()==0
-  void   restart() { _start_time = std::clock(); } // post: elapsed()==0
+         timer() { _start_time = getCPUTime(); } // postcondition: elapsed()==0
+  void   restart() { _start_time = getCPUTime(); } // post: elapsed()==0
   double elapsed() const                  // return elapsed time in seconds
-    { return  double(std::clock() - _start_time) / CLOCKS_PER_SEC; }
+    { return  getCPUTime() - _start_time; }
 
  private:
-  std::clock_t _start_time;
+  double _start_time;
 }; // timer
 
 double btBench(int seed, long tests)
