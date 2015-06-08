@@ -74,8 +74,7 @@ void btBench(const char* text, int length)
 	
 	timer t;
 	do {
-		int wlen = 0;
-		cursor += took(&text[cursor], word, &wlen);
+		cursor += took(&text[cursor], word, NULL);
 		if(!word[0]) break;
 		
 		count++;
@@ -104,8 +103,7 @@ void stdBench(const char* text, int length)
 	
 	timer t;
 	do {
-		int wlen = 0;
-		cursor += took(&text[cursor], word, &wlen);
+		cursor += took(&text[cursor], word, NULL);
 		if(!word[0]) break;
 		
 		count++;
