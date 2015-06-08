@@ -69,7 +69,10 @@ double stdFindBench(int seed, long tests)
 
 int main(int argc, char* argv[])
 {
-	if(argc < 2) return -1;
+	if(argc < 2) {
+		fprintf(stderr, "Usage: %s tests\n", argv[0]);
+		return -1;
+	}
 	
 	int tests = atoi(argv[1]);
 	int seed = time(NULL);

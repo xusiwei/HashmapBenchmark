@@ -112,7 +112,10 @@ void stdBench(const char* text, int length)
 
 int main(int argc, char* argv[])
 {
-	if(argc < 2) return -1;
+	if(argc < 2) {
+		fprintf(stderr, "Usage: %s filename\n", argv[0]);
+		return -1;
+	}
 
 	int len = 0;
 	char* text = readfile(argv[1], &len);
