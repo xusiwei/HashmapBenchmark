@@ -37,7 +37,7 @@ double btBench(int seed, long tests)
 			val->setUid1(val->getUid1() + 1);
 		}
 		else { // not found, insert <key, 1>
-			dict.insert(key, btHashInt(1));
+			dict.insert(btHashInt(r), btHashInt(1));
 		}
 	}
 	return t.elapsed();
