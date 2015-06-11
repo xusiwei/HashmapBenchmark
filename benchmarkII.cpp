@@ -24,22 +24,19 @@ double btBench(int seed, long tests)
 {
 	btHashMap<btHashInt, btHashInt> dict;
 	
-	srand(seed);
+	srand(seed); // setup random seed.
 	
 	timer t;
 	for(long i = 0; i < tests; ++i) {
-		// generate random int.
-		int r = rand();
-		// printf("generated: %d\n", r);
-		btHashInt key(r);
+		int r = rand(); // generate random int.
 
 		// lookup in the hash map.
-		btHashInt* val = dict.find(key);
+		btHashInt* val = dict.find(btHashInt(r));
 		
 		if(val != NULL) { // found, update directly.
 			val->setUid1(val->getUid1() + 1);
 		}
-		else { // 
+		else { // not found, insert <key, 1>
 			dict.insert(key, btHashInt(1));
 		}
 	}
@@ -48,23 +45,20 @@ double btBench(int seed, long tests)
 
 double stdBench(int seed, long tests)
 {
-	typedef std::unordered_map<int, int> stdMap;
-	stdMap dict;
+	std::unordered_map<int, int> dict;
 	
-	srand(seed);
+	srand(seed); // setup random seed.
 	
 	timer t;
 	for(long i = 0; i < tests; ++i) {
-		// generate random int.
-		int r = rand();
-		// printf("generated: %d\n", r);
+		int r = rand(); // generate random int.
 		
-		// insert to dict.
-		stdMap::iterator it = dict.find(r);
-		if(it != dict.end()) {
+		auto it = dict.find(r); // lookup.
+		
+		if(it != dict.end()) { // found
 			++it->second;
 		}
-		else {
+		else { // not found
 			dict.insert(std::make_pair(r, 1));
 		}
 	}
