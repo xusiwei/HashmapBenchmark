@@ -80,11 +80,11 @@ void btBench(const char* text, int length)
 		count++;
 		
 		btHashString key(word);
-		btHashInt* val = btDict.find(key);
-		if(val != NULL) {
+		btHashInt* val = btDict.find(key); // lookup
+		if(val != NULL) { // found
 			val->setUid1(val->getUid1() + 1);
 		}
-		else {
+		else { // not found
 			btDict.insert(key, btHashInt(1));
 		}
 	}while(cursor < length);
@@ -108,12 +108,11 @@ void stdBench(const char* text, int length)
 		
 		count++;
 		
-		// insert to dict.
-		auto pos = dict.find(word);
-		if(pos != dict.end()) {
+		auto pos = dict.find(word); // lookup
+		if(pos != dict.end()) { // found
 			pos->second++;
 		}
-		else {
+		else { // not found
 			dict.insert(std::make_pair(word, 1));
 		}
 	}while(cursor < length);
