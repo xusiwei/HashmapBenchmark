@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 	
-	int tests = atoi(argv[1]);
+	long tests = atol(argv[1]);
 	int seed = time(NULL);
 	
 	double stdTime = stdBench(seed, tests);
