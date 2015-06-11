@@ -78,6 +78,6 @@ int main(int argc, char* argv[])
 	double stdTime = stdBench(seed, tests);
 	double btTime = btBench(seed, tests);
 	
-	printf("%11d\t% 5.3f\t% 5.3f\n", tests, stdTime, btTime);
+	printf("%11ld\t% 5.3f\t% 5.3f\n", tests, stdTime, btTime);
 	return 0;
 }
