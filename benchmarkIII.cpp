@@ -83,6 +83,8 @@ int main(int argc, char* argv[])
 	double btInsertTime = btInsertBench(seed, tests);
 	double btFindTime   = btFindBench(seed, tests);
 	
-	printf("%11d\t% 5.3f\t% 5.3f\t% 5.3f\t% 5.3f\n", tests, stdInsertTime, stdFindTime, btInsertTime, btFindTime);
+	// printf("%11d\t% 5.3f\t% 5.3f\t% 5.3f\t% 5.3f\n", tests, stdInsertTime, stdFindTime, btInsertTime, btFindTime);
+	printf("%11ld\t%11ld\t%11d\t% 5.3f\t% 5.3f\t% 5.3f\t% 5.3f\n", 
+		tests, stdDict.size(), btDict.size(), tests/stdInsertTime, tests/stdFindTime, tests/btInsertTime, tests/btFindTime);
 	return 0;
 }
